@@ -1,0 +1,67 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "backend",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "dev"
+      ],
+      "cwd": "${workspaceFolder}/backend",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "frontend",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "dev"
+      ],
+      "cwd": "${workspaceFolder}/frontend",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "browser Start",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:5173",
+      "webRoot": "${workspaceFolder}/front/src",
+      "skipFiles": [
+        "**/node_modules/**",
+        "<node_internals>/**"
+      ]
+    },
+    {
+      "name": "LiveServer",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://127.0.0.1:5500/test/test.html",
+      "webRoot": "${workspaceFolder}/test"
+
+    }
+  ],
+  "compounds": [
+    {
+      "name": "❤ ALL",
+      "configurations": [
+        "backend",
+        "frontend",
+        "browser start"
+      ],
+      "stopAll": true
+    },
+    {
+      "name": "backend+live",
+      "configurations": [
+        "backend",
+        "LiveServer"
+      ],
+      "stopAll": true
+    }
+  ]
+}
