@@ -6,9 +6,22 @@ const port = 3000
 // cors - allow connection from different domains and ports
 app.use(cors())
 
+
+
+
 // convert json string to json object (from request)
 app.use(express.json())
 
+
+
+const path = require('path');
+// Раздаем статические файлы из папки test
+app.use(express.static(path.join(__dirname, '../test')));
+
+// Чтобы при заходе на корень / отдавался именно ваш файл
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../test/index.html'));
+});
 
 
 const mongoose = require('mongoose')

@@ -1,3 +1,5 @@
+// const API_URL = 
+
 function checkinput() {
 
     let edit = document.getElementById('newTodo')
@@ -19,7 +21,7 @@ function init() {
     loadTodos()
 }
 async function loadTodos() {
-    let response = await fetch('http://localhost:3000/todos')
+    let response = await fetch('/todos')
     let todos = await response.json()
     console.log(todos)
     showTodos(todos)
@@ -93,7 +95,7 @@ function showTodos(todos) {
 async function addTodo() {
     let newTodo = document.getElementById('newTodo')
     const data = { 'text': newTodo.value }
-    const response = await fetch('http://localhost:3000/todos', {
+    const response = await fetch('/todos', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -110,7 +112,7 @@ async function addTodo() {
     newTodo.value = ''
 }
 async function removeTodo(id) {
-    const response = await fetch('http://localhost:3000/todos/' + id, {
+    const response = await fetch('/todos/' + id, {
         method: 'DELETE'
     })
     let responseJson = await response.json()
@@ -157,7 +159,7 @@ async function updateTodo(id) {
     const data = { 'text': newTodo.value }; // Muodostetaan JSON-data lähetettäväksi
 
     // Muodostetaan URL, johon tehtävä päivitetään, käyttämällä tehtävän ID:tä
-    let url = "http://localhost:3000/todos/" + id;
+    let url = "/todos/" + id;
 
     // Lähetetään PUT-pyyntö palvelimelle, joka päivittää tehtävän
     const response = await fetch(url, {
