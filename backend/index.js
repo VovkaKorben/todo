@@ -12,7 +12,9 @@ app.use(express.json())
 
 
 const mongoose = require('mongoose')
-const mongoDB = 'mongodb://127.0.0.1:27017/todoapp'
+//const mongoDB = 'mongodb://127.0.0.1:27017/todoapp'
+const mongoDB = 'mongodb+srv://test:test@skynet.plmo5hs.mongodb.net/todoapp?appName=Skynet'
+
 mongoose.connect(mongoDB)
 // mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true })
 
