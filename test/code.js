@@ -1,8 +1,8 @@
 function checkinput() {
-   
+
     let edit = document.getElementById('newTodo')
     let button = document.getElementById('submitButton')
-
+    // return;
     let text = edit.value.trim()
     if (text === '')
         button.setAttribute('disabled', '')
@@ -74,10 +74,14 @@ function createTodoListItem(todo) {
 function showTodos(todos) {
     let todosList = document.getElementById('todosList')
     let infoText = document.getElementById('infoText')
+
+
+
     // no todos
     if (todos.length === 0) {
         infoText.innerHTML = 'Ei tehtäviä'
     } else {
+        todosList.replaceChildren();
         todos.forEach(todo => {
             let li = createTodoListItem(todo)
             todosList.appendChild(li)
@@ -122,6 +126,9 @@ async function removeTodo(id) {
 
 }
 function doEdit(id) {
+    if (window.confirm('Haluatko varmasti päivittää tehtävän?') === false)
+        return;
+
     let edit = document.getElementById('newTodo')
     let li = document.getElementById(id)
     let text = li.querySelector('.text')
@@ -160,12 +167,19 @@ async function updateTodo(id) {
         },
         body: JSON.stringify(data) // Lähetetään päivitetty teksti palvelimelle
     });
+    let responseJson = await response.json()
+    console.log(responseJson);
 
+    let infoText = document.getElementById('infoText');
     // Päivitetään tehtävälista, jotta muutokset näkyvät käyttöliittymässä
+    if (response.status === 400) {
+        infoText.innerHTML = responseJson.error;
+        return
+    }
     loadTodos();
 
     // Tyhjennetään tekstikenttä ja päivitetään painikkeen toiminto takaisin lisäystilaan
-    let infoText = document.getElementById('infoText');
+
     infoText.innerHTML = '';
     newTodo.value = ''; // Tyhjennä tekstikenttä
     changeButton(); // Vaihdetaan painike takaisin lisäystilaan

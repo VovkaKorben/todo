@@ -62,11 +62,11 @@ button {
 }
 
 .editButton {
-  background-color: red;
+  background-color: #ff9090;
 }
 
 .addButton {
-  background-color: rgb(21, 255, 0);
+  background-color: #9cff93;
 }
 
 button:disabled {
