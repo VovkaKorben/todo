@@ -46,7 +46,7 @@ pm2 logs todo-server
 ```
 
 ## API Endpoints
-GET /todos — fetch all tasks.
-POST /todos — create a new task.
-PUT /todos/:id — update a task by ID.
-DELETE /todos/:id — delete a task.
+* GET /todos — fetch all tasks.
+* POST /todos — create a new task.
+* PUT /todos/:id — update a task by ID.
+* DELETE /todos/:id — delete a task.
