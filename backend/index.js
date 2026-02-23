@@ -1,8 +1,9 @@
 const express = require('express')
 const cors = require('cors')
 const app = express()
-const port = 3000
-
+const port = process.env.PORT || 8080;
+const mongoDB = process.env.MONGO_URL || 'mongodb+srv://test:test@skynet.plmo5hs.mongodb.net/todoapp?appName=Skynet';
+// const mongoDB = 'mongodb+srv://test:test@skynet.plmo5hs.mongodb.net/todoapp?appName=Skynet'
 // cors - allow connection from different domains and ports
 app.use(cors())
 
@@ -15,21 +16,24 @@ app.use(express.json())
 
 
 const path = require('path');
-// Раздаем статические файлы из папки test
-app.use(express.static(path.join(__dirname, '../test')));
 
-// Чтобы при заходе на корень / отдавался именно ваш файл
+
+app.use(express.static(path.join(__dirname, '..', 'test')));
+
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../test/index.html'));
+    res.sendFile(path.join(__dirname, '..', 'test', 'index.html'));
 });
 
 
 const mongoose = require('mongoose')
 //const mongoDB = 'mongodb://127.0.0.1:27017/todoapp'
-const mongoDB = 'mongodb+srv://test:test@skynet.plmo5hs.mongodb.net/todoapp?appName=Skynet'
 
-mongoose.connect(mongoDB)
+
+// mongoose.connect(mongoDB)
 // mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(mongoDB)
+    .then(() => console.log("Database connected to AWS"))
+    .catch(err => console.error("MongoDB connection error:", err));
 
 const db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error:'))
