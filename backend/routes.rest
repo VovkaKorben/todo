@@ -1,0 +1,21 @@
+// create new
+POST http://localhost:3000/todos
+Content-Type: application/json
+
+{
+    "text":"todo test"
+
+}
+
+
+### get all
+GET http://localhost:3000/todos
+
+
+
+### get 
+GET http://localhost:3000/todos/6995a1835243ff6cb6c9e553
+
+### delete
+DELETE http://localhost:3000/todos/6995a1835243ff6cb6c9e553
+
