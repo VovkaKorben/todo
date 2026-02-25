@@ -16,13 +16,8 @@ app.use(express.json())
 
 
 const path = require('path');
-
-
 app.use(express.static(path.join(__dirname, '..', 'test')));
-
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'test', 'index.html'));
-});
+app.get('/', (req, res) => {    res.sendFile(path.join(__dirname, '..', 'test', 'index.html'));});
 
 
 const mongoose = require('mongoose')

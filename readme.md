@@ -49,4 +49,25 @@ pm2 logs todo-server
 * GET /todos — fetch all tasks.
 * POST /todos — create a new task.
 * PUT /todos/:id — update a task by ID.
-* DELETE /todos/:id — delete a task.
+* DELETE /todos/:id — delete a task.    
+
+
+## Deployment on Render.com
+
+1. **Create a Web Service**: Link your GitHub repository to Render.
+2. **Configure Settings**:
+   * **Root Directory**: `backend`
+   * **Build Command**: `npm install`
+   * **Start Command**: `node index.js`
+3. **Environment Variables**: Navigate to the **Environment** tab and add the required keys (`MONGO_URL`, `PORT`).
+
+## Local Environment Configuration
+
+To manage your configuration locally, create a `.env` file in the `backend` directory. This file is already ignored by Git to keep your credentials secure.
+
+**Required variables:**
+```env
+MONGO_URL=your_mongodb_atlas_connection_string
+PORT=8080
+```
+The server will prioritize these variables during startup.
